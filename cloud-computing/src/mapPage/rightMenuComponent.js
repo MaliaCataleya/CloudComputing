@@ -5,14 +5,14 @@ function RightMenuComponent() {
   return (
     <>
       <>
-        <Navbar.Toggle aria-controls={`offcanvasNavbar`} />
+        <Navbar.Toggle aria-controls={`offcanvasNavbarRight`} />
         <Navbar.Offcanvas
-          id={`offcanvasNavbar`}
-          aria-labelledby={`offcanvasNavbarLabel`}
+          id={`offcanvasNavbarRight`}
+          aria-labelledby={`offcanvasNavbarLabelRight`}
           placement="end"
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id={`offcanvasNavbarLabel`}>
+            <Offcanvas.Title id={`offcanvasNavbarLabelRight`}>
               Offcanvas
             </Offcanvas.Title>
           </Offcanvas.Header>
@@ -22,7 +22,7 @@ function RightMenuComponent() {
               <Nav.Link href="#action2">Link</Nav.Link>
               <NavDropdown
                 title="Dropdown"
-                id={`offcanvasNavbarDropdown`}
+                id={`offcanvasNavbarDropdownRight`}
               >
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
