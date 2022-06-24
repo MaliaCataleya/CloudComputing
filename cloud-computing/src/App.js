@@ -1,13 +1,12 @@
 import './App.css';
 import React from "react";
 import MapComponent from "./mapPage/mapComponent"
+import RightMenuComponent from './mapPage/rightMenuComponent';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <button type="button" class="btn btn-primary">Primary</button>
-      </header>
+      <RightMenuComponent></RightMenuComponent>
       <MapComponent></MapComponent>
     </div>
   )
