@@ -8,7 +8,7 @@ import { Navbar } from "react-bootstrap"
 function App() {
   return (
     <div className="App"> 
-    <div className='justify-content-between flex'>
+    <div className='flex justify-content-between'>
       <RightMenuComponent></RightMenuComponent>
       <DropDownComponent></DropDownComponent>
     </div>

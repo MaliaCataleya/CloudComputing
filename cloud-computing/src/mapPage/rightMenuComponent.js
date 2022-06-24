@@ -4,7 +4,8 @@ import { Navbar, Container, Offcanvas, NavDropdown, Form, Button, Nav, FormContr
 function RightMenuComponent() {
   return (
 
-    <>    
+    <>   
+    <div>
     <Navbar key={false} expand={false} className="mb-3 px-3 flex justify-content-end">
       <Navbar.Toggle aria-controls={`offcanvasNavbarRight`}/>
       <Navbar.Offcanvas
@@ -47,6 +48,7 @@ function RightMenuComponent() {
         </Offcanvas.Body>
       </Navbar.Offcanvas>
     </Navbar>
+    </div>
     </>
   );
 }
