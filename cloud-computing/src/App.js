@@ -8,7 +8,7 @@ import { Navbar } from "react-bootstrap"
 function App() {
   return (
     <div className="App"> 
-    <Navbar key={false} bg="light" expand={false} className="mb-3 flex justify-content-between">
+    <Navbar key={false} expand={false} className="mb-3 flex justify-content-between px-3">
       <RightMenuComponent></RightMenuComponent>
       <DropDownComponent></DropDownComponent>
     </Navbar>

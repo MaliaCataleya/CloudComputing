@@ -2,7 +2,7 @@ import React from "react";
 
 function MapComponent() {
   return (
-    <div>test</div>
+    <div>MapComponent</div>
   );
 }
 

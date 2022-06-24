@@ -3,7 +3,6 @@ import { Navbar, Container, Offcanvas, NavDropdown, Form, Button, Nav, FormContr
 
 function DropDownComponent() {
   return (
-    <>
       <>
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} />
         <Navbar.Offcanvas id={`offcanvasNavbar`} aria-labelledby={`offcanvasNavbarLabel`} placement="start">
@@ -28,7 +27,6 @@ function DropDownComponent() {
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </>
-</>
   );
 }
 
