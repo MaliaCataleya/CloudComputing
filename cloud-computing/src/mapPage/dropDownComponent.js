@@ -4,6 +4,7 @@ import { Navbar, Container, Offcanvas, NavDropdown, Form, Button, Nav, FormContr
 function DropDownComponent() {
   return (
       <>
+      <Navbar key={false} expand={false} className="mb-3 px-3">
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} />
         <Navbar.Offcanvas id={`offcanvasNavbar`} aria-labelledby={`offcanvasNavbarLabel`} placement="start">
           <Offcanvas.Header closeButton>
@@ -26,6 +27,7 @@ function DropDownComponent() {
             </Form>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
+        </Navbar>
       </>
   );
 }
