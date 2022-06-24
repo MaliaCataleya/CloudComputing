@@ -1,16 +1,18 @@
 import './App.css';
 import React from "react";
 import MapComponent from "./mapPage/mapComponent"
-import { Dropdown } from 'bootstrap';
 import DropDownComponent from './mapPage/dropDownComponent';
 import RightMenuComponent from './mapPage/rightMenuComponent';
+import { Navbar } from "react-bootstrap"
 
 function App() {
   return (
-    <div className="App">
-<RightMenuComponent></RightMenuComponent>
-      <MapComponent></MapComponent>
+    <div className="App"> 
+    <Navbar key={false} bg="light" expand={false} className="mb-3 ">
+      <RightMenuComponent></RightMenuComponent>
       <DropDownComponent></DropDownComponent>
+    </Navbar>
+      <MapComponent></MapComponent>
     </div>
   )
 
