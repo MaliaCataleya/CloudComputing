@@ -1,14 +1,14 @@
 import './App.css';
 import React from "react";
 import MapComponent from "./mapPage/mapComponent"
+import { Dropdown } from 'bootstrap';
+import DropDownComponent from './mapPage/dropDownComponent';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <button type="button" class="btn btn-primary">Primary</button>
-      </header>
       <MapComponent></MapComponent>
+      <DropDownComponent></DropDownComponent>
     </div>
   )
 
