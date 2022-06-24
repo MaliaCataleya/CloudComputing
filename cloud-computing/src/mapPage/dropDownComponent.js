@@ -1,10 +1,10 @@
 import React from "react";
 import { Navbar, Container, Offcanvas, NavDropdown, Form, Button, Nav, FormControl } from "react-bootstrap"
 
-function RightMenuComponent() {
+function DropDownComponent() {
   return (
     <>
-      <Container fluid className="">
+      <>
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} />
         <Navbar.Offcanvas id={`offcanvasNavbar`} aria-labelledby={`offcanvasNavbarLabel`} placement="end">
           <Offcanvas.Header closeButton>
@@ -27,9 +27,9 @@ function RightMenuComponent() {
             </Form>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
-      </Container>
+      </>
 </>
   );
 }
 
-export default RightMenuComponent;
+export default DropDownComponent;

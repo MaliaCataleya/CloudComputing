@@ -4,16 +4,15 @@ import { Navbar, Container, Offcanvas, NavDropdown, Form, Button, Nav, FormContr
 function RightMenuComponent() {
   return (
     <>
-      <Container fluid>
-        <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
-        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${false}`} />
+      <>
+        <Navbar.Toggle aria-controls={`offcanvasNavbar`} />
         <Navbar.Offcanvas
-          id={`offcanvasNavbar-expand-${false}`}
-          aria-labelledby={`offcanvasNavbarLabel-expand-${false}`}
+          id={`offcanvasNavbar`}
+          aria-labelledby={`offcanvasNavbarLabel`}
           placement="end"
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${false}`}>
+            <Offcanvas.Title id={`offcanvasNavbarLabel`}>
               Offcanvas
             </Offcanvas.Title>
           </Offcanvas.Header>
@@ -23,7 +22,7 @@ function RightMenuComponent() {
               <Nav.Link href="#action2">Link</Nav.Link>
               <NavDropdown
                 title="Dropdown"
-                id={`offcanvasNavbarDropdown-expand-${false}`}
+                id={`offcanvasNavbarDropdown`}
               >
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
@@ -46,7 +45,7 @@ function RightMenuComponent() {
             </Form>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
-      </Container>
+      </>
 </>
   );
 }
