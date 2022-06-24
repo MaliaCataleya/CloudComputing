@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, NavDropdown, Form, Button, Nav, FormControl } from "react-bootstrap"
+import { Navbar, NavDropdown, Form, Button, Nav, FormControl, Offcanvas } from "react-bootstrap"
 
 function DropDownComponent() {
   return (
