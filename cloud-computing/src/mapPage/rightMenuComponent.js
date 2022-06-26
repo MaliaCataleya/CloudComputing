@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Container, Offcanvas, NavDropdown, Form, Button, Nav, FormControl } from "react-bootstrap"
+import { Navbar, Offcanvas, NavDropdown, Form, Button, Nav, FormControl } from "react-bootstrap"
 
 function RightMenuComponent() {
   return (
