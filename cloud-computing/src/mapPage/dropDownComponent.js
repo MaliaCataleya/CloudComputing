@@ -4,8 +4,8 @@ import { Navbar, NavDropdown, Form, Button, Nav, FormControl, Offcanvas } from "
 function DropDownComponent() {
   return (
       <>
-      <div className="position-absolute top-0 start-0 w-25">
-      <Navbar key={false} expand={false} className="mb-3 px-3">
+      <div className="position-absolute top-0 start-0 w-25 bg-transparent">
+      <Navbar key={false} expand={false} className="px-3 bg-transparent">
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} />
         <Navbar.Offcanvas id={`offcanvasNavbar`} aria-labelledby={`offcanvasNavbarLabel`} placement="start">
           <Offcanvas.Header closeButton>

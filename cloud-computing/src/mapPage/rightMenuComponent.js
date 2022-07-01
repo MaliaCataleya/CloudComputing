@@ -12,8 +12,8 @@ function RightMenuComponent() {
   return (
 
     <>   
-    <div>
-    <Navbar key={false} expand={false} className="mb-3 px-3 flex justify-content-end">
+    <div className="bg-transparent">
+    <Navbar key={false} expand={false} className="px-3 flex justify-content-end bg-transparent">
       <Navbar.Toggle aria-controls={`offcanvasNavbarRight`}/>
       <Navbar.Offcanvas
         id={`offcanvasNavbarRight`}
