@@ -16,13 +16,13 @@ function DropDownComponent() {
                             <Nav className="justify-content-end flex-grow-1 pe-3">
                                 <BootstrapDatePickerComponent></BootstrapDatePickerComponent>
                             </Nav>
-                            <div class="py-3">
+                            <div className="py-3">
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+                                    <label className="form-check-label" htmlFor="flexRadioDefault1">Default radio</label></div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                                    <label class="form-check-label" for="flexRadioDefault1">Default radio</label></div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                                    <label class="form-check-label" for="flexRadioDefault1">Second default radio</label>
+                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+                                    <label className="form-check-label" htmlFor="flexRadioDefault1">Second default radio</label>
                                 </div>
                             </div>
                         </Offcanvas.Body>
