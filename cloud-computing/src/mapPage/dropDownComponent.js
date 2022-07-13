@@ -17,9 +17,6 @@ function DropDownComponent() {
                                 <BootstrapDatePickerComponent></BootstrapDatePickerComponent>
                             </Nav>
                             <div className="py-3">
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                                    <label className="form-check-label" htmlFor="flexRadioDefault1">Default radio</label></div>
                                 <div class="form-check">
                                     <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
                                     <label className="form-check-label" for="flexRadioDefault1">Auflistung besuchter Orte</label></div>
