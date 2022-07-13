@@ -10,7 +10,7 @@ function DropDownComponent() {
                     <Navbar.Toggle aria-controls={`offcanvasNavbar`} />
                     <Navbar.Offcanvas id={`offcanvasNavbar`} aria-labelledby={`offcanvasNavbarLabel`} placement="start">
                         <Offcanvas.Header closeButton>
-                            <Offcanvas.Title id={`offcanvasNavbarLabel`}>Offcanvas</Offcanvas.Title>
+                            <Offcanvas.Title id={`offcanvasNavbarLabel`}>Konfiguration</Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body className="container h-100">
                             <div className="position-relative h-100">
