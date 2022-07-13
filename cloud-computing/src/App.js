@@ -1,23 +1,32 @@
-import './App.css';
+import "./App.css";
 import React, { useState, useEffect } from "react";
-import MapComponent from "./mapPage/mapComponent"
-import DropDownComponent from './mapPage/dropDownComponent';
-import RightMenuComponent from './mapPage/rightMenuComponent';
+import MapComponent from "./mapPage/mapComponent";
+import DropDownComponent from "./mapPage/dropDownComponent";
+import RightMenuComponent from "./mapPage/rightMenuComponent";
 
 function App() {
   const [date, setDate] = useState("");
-  
+  const [placeChecked, setPlaceChecked] = useState(false);
+  const [rangeChecked, setRangeChecked] = useState(false);
+
+
   useEffect(() => {
-    console.log(date)
-  })
+    console.log(date, placeChecked, rangeChecked);
+  });
 
   return (
-    <div className="App"> 
+    <div className="App">
       <RightMenuComponent></RightMenuComponent>
-      <DropDownComponent setDate = {setDate}></DropDownComponent>
+      <DropDownComponent
+        setDate={setDate}
+        setRangeChecked={setRangeChecked}
+        setPlaceChecked={setPlaceChecked}
+        placeChecked={placeChecked}
+        rangeChecked={rangeChecked}
+      ></DropDownComponent>
       <MapComponent></MapComponent>
     </div>
-  )
+  );
 }
 
 export default App;
