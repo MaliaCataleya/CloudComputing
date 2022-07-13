@@ -16,7 +16,7 @@ function DropDownComponent(props) {
                         <Offcanvas.Body className="container h-100">
                             <div className="position-relative h-100">
                                 <Nav className="pe-3">
-                                    <BootstrapDatePickerComponent></BootstrapDatePickerComponent>
+                                    <BootstrapDatePickerComponent setDate={props.setDate}></BootstrapDatePickerComponent>
                                 </Nav>
                                 <div className="py-3">
                                     <div class="form-check">
