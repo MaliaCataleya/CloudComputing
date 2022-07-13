@@ -19,10 +19,10 @@ function DropDownComponent() {
                             <div class="py-3">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                                    <label class="form-check-label" for="flexRadioDefault1">Default radio</label></div>
+                                    <label class="form-check-label" for="flexRadioDefault1">Auflistung besuchter Orte</label></div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                                    <label class="form-check-label" for="flexRadioDefault1">Second default radio</label>
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"></input>
+                                    <label class="form-check-label" for="flexRadioDefault2">Summation bewegter Kilometer</label>
                                 </div>
                             </div>
                         </Offcanvas.Body>
