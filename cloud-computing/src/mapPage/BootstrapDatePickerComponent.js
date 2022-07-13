@@ -15,7 +15,7 @@ class BootstrapDatePickerComponent extends React.Component{
                     <div className="col-md-6">
                         <Form.Group controlId="dob">
                             <Form.Label>Select Date</Form.Label>
-                            <Form.Control type="date" name="date" placeholder="Date"  value={this.state.val} onChange={e => this.setState({ date: e.target.value }, () => console.log(this.state.date))}/>
+                            <Form.Control type="date" name="date" placeholder="Date"  value={this.state.val} onChange={e => this.props.setDate({ date: e.target.value })}/>
                         </Form.Group>
                     </div>
                 </div>

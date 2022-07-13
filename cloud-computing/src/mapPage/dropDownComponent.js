@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import { Navbar, NavDropdown, Form, Button, Nav, FormControl, Offcanvas } from "react-bootstrap"
 import BootstrapDatePickerComponent from "./BootstrapDatePickerComponent";
 
-function DropDownComponent() {
+function DropDownComponent(props) {
+    const [date, setDate] = useState("");
     return (
         <>
             <div className="position-absolute top-0 start-0 w-25 bg-transparent">
@@ -14,7 +15,7 @@ function DropDownComponent() {
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <BootstrapDatePickerComponent></BootstrapDatePickerComponent>
+                                <BootstrapDatePickerComponent setDate = {props.setDate}></BootstrapDatePickerComponent>
                             </Nav>
                             <div className="py-3">
                                 <div class="form-check">
