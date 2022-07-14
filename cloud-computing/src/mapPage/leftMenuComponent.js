@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import BootstrapDatePickerComponent from "./BootstrapDatePickerComponent";
 
-function DropDownComponent(props) {
+function LeftMenuComponent(props) {
     const [date, setDate] = useState("");
 
     return (
@@ -70,4 +70,4 @@ function DropDownComponent(props) {
     );
 }
 
-export default DropDownComponent;
+export default LeftMenuComponent;
