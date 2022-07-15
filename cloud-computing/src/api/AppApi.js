@@ -44,13 +44,14 @@ export default class AppAPI {
     );
   }
 
-  postFileByUser(file, sessionId) {
-    // const formData = new FormData();
-    // formData.append("File", file);
+  postFileByUser(googleJson, sessionId) {
 
     // return this.#fetchAdvanced(this.#postFileByUser(sessionId), {
     //   method: "POST",
-    //   body: formData,
+    //   body: {
+    //     googleJson: googleJson,
+    //     sessionId: sessionId,
+    //   },
     // }).then((responseJSON) => {
     //   return new Promise(function (resolve) {
     //     resolve(responseJSON);
