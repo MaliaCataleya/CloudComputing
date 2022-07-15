@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import UploadButton from "./uploadButtonComponent";
 
 function HomeComponent() {
+  const [uploaded, setUploaded] = useState(false);
   return (
     <div className="d-flex flex-column justify-content-center align-items-center vh-100">
-      <Button className="m-2">Upload</Button>
-      <Link to="/map">
-        <Button className="m-2">View your Data</Button>
-      </Link>
+      <UploadButton setUploaded={setUploaded}></UploadButton>
+      {uploaded ? (
+        <Link to="/map">
+          <Button className="m-2">View your Data</Button>
+        </Link>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }
