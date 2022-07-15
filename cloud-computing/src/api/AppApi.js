@@ -5,7 +5,7 @@ export default class AppAPI {
   #AppServerBaseURL = "/app";
 
   #getRoutesByDateURL = (date) => "";
-  #postFileByUser = (sessionId) => "";
+  #postFileByUser = () => "https://4b16383a.eu-gb.apigw.appdomain.cloud/cloud-computing/entries"
 
   /**
    * Get the Singelton instance
@@ -46,19 +46,23 @@ export default class AppAPI {
 
   postFileByUser(googleJson, sessionId) {
 
-    // return this.#fetchAdvanced(this.#postFileByUser(sessionId), {
-    //   method: "POST",
-    //   body: {
-    //     googleJson: googleJson,
-    //     sessionId: sessionId,
-    //   },
-    // }).then((responseJSON) => {
-    //   return new Promise(function (resolve) {
-    //     resolve(responseJSON);
-    //   });
-    // });
-    return new Promise(function (resolve) {
-        resolve(true);
+    return this.#fetchAdvanced(this.#postFileByUser(googleJson, sessionId), {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "PUT",
+      body: JSON.stringify({
+            googleJson: googleJson,
+            sessionId: sessionId,
+          }),
+    }).then((responseJSON) => {
+      return new Promise(function (resolve) {
+        resolve(responseJSON);
       });
+    });
+    // return new Promise(function (resolve) {
+    //     resolve(true);
+    //   });
   }
 }
