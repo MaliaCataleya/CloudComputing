@@ -1,4 +1,2 @@
-const Selected = {
-    VisitedPlaces: 'VisitedPlaces',
-    Routes: 'Routes',
-  };
+export const placeVisit = "placeVisit"
+export const activitySegment = "activitySegment"

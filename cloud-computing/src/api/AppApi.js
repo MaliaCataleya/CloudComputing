@@ -4,7 +4,7 @@ export default class AppAPI {
 
   #AppServerBaseURL = "/app";
 
-  #getRoutesByDateURL = (date) => "";
+  #getRoutesByDateURL = () => "";
   #postFileByUser = () => "https://4b16383a.eu-gb.apigw.appdomain.cloud/cloud-computing/entries"
 
   /**
@@ -33,8 +33,8 @@ export default class AppAPI {
       return res.json();
     });
 
-  getRoutesByDate(date) {
-    return this.#fetchAdvanced(this.#getRoutesByDateURL(date)).then(
+  getRoutesByDate(date, sessionId) {
+    return this.#fetchAdvanced(this.#getRoutesByDateURL()).then(
       (responseJSON) => {
         let routesJSON = responseJSON;
         return new Promise(function (resolve) {
@@ -42,6 +42,10 @@ export default class AppAPI {
         });
       }
     );
+  }
+
+  postLocationBySessionId(location, sessionId){
+
   }
 
   postFileByUser(googleJson, sessionId) {
