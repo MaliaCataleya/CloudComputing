@@ -44,8 +44,22 @@ export default class AppAPI {
     );
   }
 
-  postLocationBySessionId(location, sessionId){
-
+  postLocationBySessionId(locationJson, sessionId){
+    return this.#fetchAdvanced(this.#postFileByUser(locationJson, sessionId), {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "PUT",
+      body: JSON.stringify({
+            sessionId: sessionId,
+            locationJson: locationJson,
+          }),
+    }).then((responseJSON) => {
+      return new Promise(function (resolve) {
+        resolve(responseJSON);
+      });
+    });
   }
 
   postFileByUser(googleJson, sessionId) {

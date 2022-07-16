@@ -34,7 +34,6 @@ function UploadButton(props) {
           let location = element[ConstClass.placeVisit]["location"]
           location["dates"] = getDates(element[ConstClass.placeVisit]["duration"])
           locations.push(location)
-          console.log(locations)
         }
         else if (Object.keys(element)[0] === ConstClass.activitySegment){
           activities.push(element[ConstClass.activitySegment]["activities"])
@@ -42,16 +41,21 @@ function UploadButton(props) {
         
       }
       let api = new AppAPI();
-      api
-        .postFileByUser(
-          fileJSON,
-          sessionStorage.getItem("sessionId")
-        )
-        .then((res) => {
-          props.setUploaded(true);
-          inputRef.current?.files && setUploadedFileName(inputRef.current.files[0].name);
-        })
-        .catch();
+      for (let location of locations){
+        api.postLocationBySessionId(location, sessionStorage.getItem("sessionId"))
+      }
+      props.setUploaded(true);
+      inputRef.current?.files && setUploadedFileName(inputRef.current.files[0].name);
+      // api
+      //   .postFileByUser(
+      //     fileJSON,
+      //     sessionStorage.getItem("sessionId")
+      //   )
+      //   .then((res) => {
+      //     props.setUploaded(true);
+      //     inputRef.current?.files && setUploadedFileName(inputRef.current.files[0].name);
+      //   })
+      //   .catch();
     }
   };
   return (
