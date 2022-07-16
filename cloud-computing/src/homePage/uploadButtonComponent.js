@@ -10,11 +10,12 @@ function UploadButton(props) {
   };
   const handleFile = async () => {
     if (inputRef.current?.files) {
-      console.log(await inputRef.current?.files[0].text())
+      let file = await inputRef.current?.files[0].text()
+      let fileJSON = JSON.parse(file)
       let api = new AppAPI();
       api
         .postFileByUser(
-          await inputRef.current?.files[0].text(),
+          fileJSON,
           sessionStorage.getItem("sessionId")
         )
         .then((res) => {

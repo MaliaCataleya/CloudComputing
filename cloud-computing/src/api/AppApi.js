@@ -45,7 +45,6 @@ export default class AppAPI {
   }
 
   postFileByUser(googleJson, sessionId) {
-
     return this.#fetchAdvanced(this.#postFileByUser(googleJson, sessionId), {
       headers: {
         'Accept': 'application/json',
@@ -53,8 +52,8 @@ export default class AppAPI {
       },
       method: "PUT",
       body: JSON.stringify({
-            googleJson: googleJson,
             sessionId: sessionId,
+            googleJson: googleJson,
           }),
     }).then((responseJSON) => {
       return new Promise(function (resolve) {
