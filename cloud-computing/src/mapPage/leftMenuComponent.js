@@ -10,6 +10,8 @@ import {
 } from "react-bootstrap";
 import BootstrapDatePickerComponent from "./BootstrapDatePickerComponent";
 
+//highlight days that have data?????
+
 function LeftMenuComponent(props) {
     const [date, setDate] = useState("");
 

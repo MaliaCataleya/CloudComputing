@@ -16,7 +16,7 @@ function MapPageComponent() {
     console.log(date, locationChecked, rangeChecked);
     if(locationChecked === true){
       var api = AppAPI.getAPI()
-      api.getLocationsByDateAndSessionId(date, sessionStorage.getItem("sessionId")).then((loc) => {setLocations(loc)})
+      api.getLocationsByDateAndSessionId(date, sessionStorage.getItem("sessionId")).then((loc) => {setLocations(loc.docs)})
     }
   }, [date, locationChecked, rangeChecked]);
 
@@ -34,7 +34,7 @@ function MapPageComponent() {
         placeChecked={locationChecked}
         rangeChecked={rangeChecked}
       ></LeftMenuComponent>
-      <MapComponent></MapComponent>
+      <MapComponent locations={locations}></MapComponent>
     </div>
   );
 }

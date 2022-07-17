@@ -1,20 +1,42 @@
 import React from "react";
 import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
 
-function MapComponent() {
+function MapComponent(props) {
+
+  //highlight days that have data in calender?????
+
   return (
     <div>
-      <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
-      </MapContainer>
+      {props.locations ? (
+        <MapContainer
+          center={[
+            props.locations[0].locationJson.latitudeE7 * 0.0000001,
+            props.locations[0].locationJson.longitudeE7 * 0.0000001,
+          ]}
+          zoom={13}
+          scrollWheelZoom={true}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {props.locations.map((loc) => {
+            return (
+              <Marker
+                key={loc.locationJson.latitudeE7}
+                position={[
+                  loc.locationJson.latitudeE7 * 0.0000001,
+                  loc.locationJson.longitudeE7 * 0.0000001,
+                ]}
+              >
+                <Popup>{loc.locationJson.name}</Popup>
+              </Marker>
+            );
+          })}
+        </MapContainer>
+      ) 
+      : 
+      <div>Select a date in the left menu, which has location data</div>}
     </div>
   );
 }
