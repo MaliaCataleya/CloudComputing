@@ -5,19 +5,24 @@ import RightMenuComponent from "./rightMenuComponent";
 import AppAPI from "../api/AppApi";
 
 function MapPageComponent() {
-  const [date, setDate] = useState("");
-  const [placeChecked, setPlaceChecked] = useState(false);
+  const [date, setDate] = useState({});
+  const [locationChecked, setPlaceChecked] = useState(false);
   const [rangeChecked, setRangeChecked] = useState(false);
   const [routes, setRoutes] = useState(null);
+  const [locations, setLocations] = useState(null);
 
 
   useEffect(() => {
-    console.log(date, placeChecked, rangeChecked);
-    if(rangeChecked === true){
+    console.log(date, locationChecked, rangeChecked);
+    if(locationChecked === true){
       var api = AppAPI.getAPI()
-      setRoutes(api.getRoutesByDate(date))
+      api.getLocationsByDateAndSessionId(date, sessionStorage.getItem("sessionId")).then((loc) => {setLocations(loc)})
     }
-  }, [date, placeChecked, rangeChecked]);
+  }, [date, locationChecked, rangeChecked]);
+
+  useEffect(() => {
+    console.log(locations)
+  }, [locations]);
 
   return (
     <div className="App">
@@ -26,7 +31,7 @@ function MapPageComponent() {
         setDate={setDate}
         setRangeChecked={setRangeChecked}
         setPlaceChecked={setPlaceChecked}
-        placeChecked={placeChecked}
+        placeChecked={locationChecked}
         rangeChecked={rangeChecked}
       ></LeftMenuComponent>
       <MapComponent></MapComponent>

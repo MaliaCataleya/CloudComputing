@@ -6,6 +6,10 @@ export default class AppAPI {
 
   #getRoutesByDateURL = () => "";
   #postFileByUser = () => "https://4b16383a.eu-gb.apigw.appdomain.cloud/cloud-computing/entries"
+  #getLocationsByDateAndSessionId = (date, sessionId) => "https://4b16383a.eu-gb.apigw.appdomain.cloud/cloud-computing/locations?"  + new URLSearchParams({
+    date: date,
+    sessionId: sessionId,
+})
 
   /**
    * Get the Singelton instance
@@ -43,6 +47,21 @@ export default class AppAPI {
       }
     );
   }
+
+  getLocationsByDateAndSessionId(date, sessionId){
+    return this.#fetchAdvanced(this.#getLocationsByDateAndSessionId(date.date, sessionId), {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "GET"
+    }).then((responseJSON) => {
+      return new Promise(function (resolve) {
+        resolve(responseJSON);
+      });
+    });
+  }
+
 
   postLocationBySessionId(locationJson, sessionId){
     return this.#fetchAdvanced(this.#postFileByUser(locationJson, sessionId), {
