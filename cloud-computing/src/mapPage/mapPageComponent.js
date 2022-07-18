@@ -34,7 +34,7 @@ function MapPageComponent() {
 
   return (
     <div className="App">
-      <RightMenuComponent></RightMenuComponent>
+      <RightMenuComponent locations={locations}></RightMenuComponent>
       <LeftMenuComponent
         setDate={setDate}
         setRangeChecked={setRangeChecked}

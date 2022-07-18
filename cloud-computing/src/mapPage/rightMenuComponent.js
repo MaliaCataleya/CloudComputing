@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Offcanvas, Nav } from "react-bootstrap";
 
-function RightMenuComponent() {
+function RightMenuComponent(props) {
   const [locations, setLocations] = useState([
     "Megges",
     "Burger King",
     "Madeira",
   ]);
   const [transportations, setTransportations] = useState({
-    "Walking": 4556,
-    "Tram": 4242424,
-  }
-  );
-  const listItemsLocations = locations.map((location, index) => (
-    <li key={index}>{location}</li>
+    Walking: 4556,
+    Tram: 4242424,
+  });
+  const listItemsLocations = props.locations.map((loc, index) => (
+    <li key={index}>{loc.locationJson.name}</li>
   ));
-  const listItemsTransportation =  Object.entries(transportations).map(([key, value]) => (
-    <li key={key}>{key}: {value}m</li>
-  ))
+  const listItemsTransportation = Object.entries(transportations).map(
+    ([key, value]) => (
+      <li key={key}>
+        {key}: {value}m
+      </li>
+    )
+  );
 
   useEffect(() => {
-    console.log(Object.entries(transportations).forEach((m)=>console.log(m)));
+    console.log(Object.entries(transportations).forEach((m) => console.log(m)));
   });
 
   return (
@@ -45,14 +48,14 @@ function RightMenuComponent() {
                     className="font-weight-bold"
                   ></Offcanvas.Title>
                 </Offcanvas.Header>
-                  <Offcanvas.Title className="font-weight-bold">
-                    Most visited locations:
-                  </Offcanvas.Title>
-                  <ul className="mt-2">{listItemsLocations}</ul>
-                  <Offcanvas.Title className="font-weight-bold mt-3">
-                    Means of transportation:
-                  </Offcanvas.Title>
-                  <ul className="mt-2">{listItemsTransportation}</ul>
+                <Offcanvas.Title className="font-weight-bold">
+                  Most visited locations:
+                </Offcanvas.Title>
+                {props.locations ? <ul className="mt-2">{listItemsLocations}</ul> : <div></div>}
+                <Offcanvas.Title className="font-weight-bold mt-3">
+                  Means of transportation:
+                </Offcanvas.Title>
+                <ul className="mt-2">{listItemsTransportation}</ul>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
