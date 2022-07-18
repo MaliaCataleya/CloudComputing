@@ -11,9 +11,7 @@ function RightMenuComponent(props) {
     Walking: 4556,
     Tram: 4242424,
   });
-  const listItemsLocations = props.locations.map((loc, index) => (
-    <li key={index}>{loc.locationJson.name}</li>
-  ));
+
   const listItemsTransportation = Object.entries(transportations).map(
     ([key, value]) => (
       <li key={key}>
@@ -51,7 +49,15 @@ function RightMenuComponent(props) {
                 <Offcanvas.Title className="font-weight-bold">
                   Most visited locations:
                 </Offcanvas.Title>
-                {props.locations ? <ul className="mt-2">{listItemsLocations}</ul> : <div></div>}
+                {props.locations ? (
+                  <ul className="mt-2">
+                    {props.locations.map((loc, index) => (
+                      <li key={index}>{loc.locationJson.name}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div></div>
+                )}
                 <Offcanvas.Title className="font-weight-bold mt-3">
                   Means of transportation:
                 </Offcanvas.Title>

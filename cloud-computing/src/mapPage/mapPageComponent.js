@@ -24,6 +24,9 @@ function MapPageComponent() {
           if (loc.docs.length > 0) {
             setLocations(loc.docs);
           }
+          else {
+            setLocations(null)
+          }
         });
     }
   }, [date, locationChecked, rangeChecked]);
