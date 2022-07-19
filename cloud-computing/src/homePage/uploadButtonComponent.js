@@ -28,7 +28,7 @@ function UploadButton(props) {
       let file = await inputRef.current?.files[0].text()
       let fileJSON = JSON.parse(file)
       let locations = []
-      let activities = []
+      let routes = []
       for(let element of fileJSON.timelineObjects){
         if(Object.keys(element)[0] === ConstClass.placeVisit){
           let location = element[ConstClass.placeVisit]["location"]
@@ -36,7 +36,9 @@ function UploadButton(props) {
           locations.push(location)
         }
         else if (Object.keys(element)[0] === ConstClass.activitySegment){
-          activities.push(element[ConstClass.activitySegment]["activities"])
+          let activitySegment = element[ConstClass.activitySegment]
+          activitySegment["dates"] = getDates(element[ConstClass.activitySegment]["duration"])
+          routes.push(activitySegment)
         }
         
       }
@@ -44,18 +46,11 @@ function UploadButton(props) {
       for (let location of locations){
         api.postLocationBySessionId(location, sessionStorage.getItem("sessionId"))
       }
+      for (let activitySegment of routes){
+        api.postRouteBySessionId(activitySegment, sessionStorage.getItem("sessionId"))
+      }
       props.setUploaded(true);
       inputRef.current?.files && setUploadedFileName(inputRef.current.files[0].name);
-      // api
-      //   .postFileByUser(
-      //     fileJSON,
-      //     sessionStorage.getItem("sessionId")
-      //   )
-      //   .then((res) => {
-      //     props.setUploaded(true);
-      //     inputRef.current?.files && setUploadedFileName(inputRef.current.files[0].name);
-      //   })
-      //   .catch();
     }
   };
   return (

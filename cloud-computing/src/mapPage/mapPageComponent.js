@@ -7,12 +7,11 @@ import AppAPI from "../api/AppApi";
 function MapPageComponent() {
   const [date, setDate] = useState({});
   const [locationChecked, setPlaceChecked] = useState(true);
-  const [rangeChecked, setRangeChecked] = useState(false);
+  const [routeChecked, setRouteChecked] = useState(false);
   const [routes, setRoutes] = useState(null);
   const [locations, setLocations] = useState(null);
 
   useEffect(() => {
-    console.log(date, locationChecked, rangeChecked);
     if (locationChecked === true) {
       var api = AppAPI.getAPI();
       api
@@ -21,6 +20,7 @@ function MapPageComponent() {
           sessionStorage.getItem("sessionId")
         )
         .then((loc) => {
+          console.log(loc)
           if (loc.docs.length > 0) {
             setLocations(loc.docs);
           }
@@ -29,7 +29,24 @@ function MapPageComponent() {
           }
         });
     }
-  }, [date, locationChecked, rangeChecked]);
+    if (routeChecked === true) {
+      var api = AppAPI.getAPI();
+      api
+        .getRoutesByDateAndSessionId(
+          date,
+          sessionStorage.getItem("sessionId")
+        )
+        .then((loc) => {
+          console.log(loc)
+          if (loc.docs.length > 0) {
+            setRoutes(loc.docs);
+          }
+          else {
+            setRoutes(null)
+          }
+        });
+    }
+  }, [date, locationChecked, routeChecked]);
 
   useEffect(() => {
     console.log(locations);
@@ -40,10 +57,10 @@ function MapPageComponent() {
       <RightMenuComponent locations={locations}></RightMenuComponent>
       <LeftMenuComponent
         setDate={setDate}
-        setRangeChecked={setRangeChecked}
+        setRangeChecked={setRouteChecked}
         setPlaceChecked={setPlaceChecked}
         placeChecked={locationChecked}
-        rangeChecked={rangeChecked}
+        rangeChecked={routeChecked}
       ></LeftMenuComponent>
       <MapComponent locations={locations}></MapComponent>
     </div>

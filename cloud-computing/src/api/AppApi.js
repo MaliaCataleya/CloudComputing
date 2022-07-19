@@ -4,8 +4,12 @@ export default class AppAPI {
 
   #AppServerBaseURL = "/app";
 
-  #getRoutesByDateURL = () => "";
-  #postFileByUser = () => "https://4b16383a.eu-gb.apigw.appdomain.cloud/cloud-computing/entries"
+  #getRoutesByDateAndSessionId = (date, sessionId) => "https://4b16383a.eu-gb.apigw.appdomain.cloud/cloud-computing/route?"  + new URLSearchParams({
+    date: date,
+    sessionId: sessionId
+  });
+  #postLocationBySessionId = () => "https://4b16383a.eu-gb.apigw.appdomain.cloud/cloud-computing/locations"
+  #postRouteBySessionId = () => "https://4b16383a.eu-gb.apigw.appdomain.cloud/cloud-computing/route"
   #getLocationsByDateAndSessionId = (date, sessionId) => "https://4b16383a.eu-gb.apigw.appdomain.cloud/cloud-computing/locations?"  + new URLSearchParams({
     date: date,
     sessionId: sessionId,
@@ -37,16 +41,19 @@ export default class AppAPI {
       return res.json();
     });
 
-  getRoutesByDate(date, sessionId) {
-    return this.#fetchAdvanced(this.#getRoutesByDateURL()).then(
-      (responseJSON) => {
-        let routesJSON = responseJSON;
+    getRoutesByDateAndSessionId(date, sessionId){
+      return this.#fetchAdvanced(this.#getRoutesByDateAndSessionId(date.date, sessionId), {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "GET"
+      }).then((responseJSON) => {
         return new Promise(function (resolve) {
-          resolve(routesJSON);
+          resolve(responseJSON);
         });
-      }
-    );
-  }
+      });
+    }
 
   getLocationsByDateAndSessionId(date, sessionId){
     return this.#fetchAdvanced(this.#getLocationsByDateAndSessionId(date.date, sessionId), {
@@ -64,7 +71,7 @@ export default class AppAPI {
 
 
   postLocationBySessionId(locationJson, sessionId){
-    return this.#fetchAdvanced(this.#postFileByUser(locationJson, sessionId), {
+    return this.#fetchAdvanced(this.#postLocationBySessionId(locationJson, sessionId), {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -81,8 +88,8 @@ export default class AppAPI {
     });
   }
 
-  postFileByUser(googleJson, sessionId) {
-    return this.#fetchAdvanced(this.#postFileByUser(googleJson, sessionId), {
+  postRouteBySessionId(routeJson, sessionId){
+    return this.#fetchAdvanced(this.#postRouteBySessionId(routeJson, sessionId), {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -90,15 +97,33 @@ export default class AppAPI {
       method: "PUT",
       body: JSON.stringify({
             sessionId: sessionId,
-            googleJson: googleJson,
+            routeJson: routeJson,
           }),
     }).then((responseJSON) => {
       return new Promise(function (resolve) {
         resolve(responseJSON);
       });
     });
-    // return new Promise(function (resolve) {
-    //     resolve(true);
-    //   });
   }
+
+  // postFileByUser(googleJson, sessionId) {
+  //   return this.#fetchAdvanced(this.#postLocationByUser(googleJson, sessionId), {
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     method: "PUT",
+  //     body: JSON.stringify({
+  //           sessionId: sessionId,
+  //           googleJson: googleJson,
+  //         }),
+  //   }).then((responseJSON) => {
+  //     return new Promise(function (resolve) {
+  //       resolve(responseJSON);
+  //     });
+  //   });
+  //   return new Promise(function (resolve) {
+  //       resolve(true);
+  //     });
+  // }
 }
