@@ -46,6 +46,12 @@ function MapPageComponent() {
           }
         });
     }
+    else if (locationChecked === false) {
+      setLocations(null)
+    }
+    else if (routeChecked === false) {
+      setRoutes(null)
+    }
   }, [date, locationChecked, routeChecked]);
 
   useEffect(() => {

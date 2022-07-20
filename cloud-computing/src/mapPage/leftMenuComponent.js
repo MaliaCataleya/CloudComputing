@@ -49,14 +49,14 @@ function LeftMenuComponent(props) {
                                         checked={props.placeChecked}
                                         type="checkbox"
                                         id="checkboxPlace"
-                                        label="Besuchte Orte"
+                                        label="Loactions"
                                         onChange={() => props.setPlaceChecked(!props.placeChecked)}
                                     />
                                     <Form.Check
                                         checked={props.rangeChecked}
                                         type="checkbox"
                                         id="checkboxRange"
-                                        label="Zurückgelegte Strecken"
+                                        label="Routes"
                                         onChange={() => props.setRangeChecked(!props.rangeChecked)}
                                     />
                                 </div>

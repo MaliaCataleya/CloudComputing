@@ -36,7 +36,7 @@ function MapComponent(props) {
         </MapContainer>
       ) 
       : 
-      <div>Select a date in the left menu, which has location data</div>}
+      <div>Select a date in the left menu, which has location data and select locations or routes</div>}
     </div>
   );
 }

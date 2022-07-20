@@ -2,11 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Navbar, Offcanvas, Nav } from "react-bootstrap";
 
 function RightMenuComponent(props) {
-  const [locations, setLocations] = useState([
-    "Megges",
-    "Burger King",
-    "Madeira",
-  ]);
   const [transportations, setTransportations] = useState({
     Walking: 4556,
     Tram: 4242424,
