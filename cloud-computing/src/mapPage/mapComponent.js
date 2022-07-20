@@ -1,5 +1,7 @@
 import React from "react";
-import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet-routing-machine";
+import RoutingMachine from "./routingMachineComponent";
 
 function MapComponent(props) {
 
@@ -20,6 +22,10 @@ function MapComponent(props) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+          {/* {props.routes.map((route) => {
+            
+          })} */}
+          <RoutingMachine></RoutingMachine>
           {props.locations.map((loc) => {
             return (
               <Marker
