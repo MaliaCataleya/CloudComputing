@@ -8,51 +8,34 @@ function MapPageComponent() {
   const [date, setDate] = useState({});
   const [locationChecked, setPlaceChecked] = useState(true);
   const [routeChecked, setRouteChecked] = useState(false);
-  const [routes, setRoutes] = useState(null);
-  const [locations, setLocations] = useState(null);
+  const [routes, setRoutes] = useState([]);
+  const [locations, setLocations] = useState([]);
 
   useEffect(() => {
-    if (locationChecked === true) {
-      var api = AppAPI.getAPI();
-      api
-        .getLocationsByDateAndSessionId(
-          date,
-          sessionStorage.getItem("sessionId")
-        )
-        .then((loc) => {
-          console.log(loc)
-          if (loc.docs.length > 0) {
-            setLocations(loc.docs);
-          }
-          else {
-            setLocations(null)
-          }
-        });
-    }
-    if (routeChecked === true) {
-      var api = AppAPI.getAPI();
-      api
-        .getRoutesByDateAndSessionId(
-          date,
-          sessionStorage.getItem("sessionId")
-        )
-        .then((loc) => {
-          console.log(loc)
-          if (loc.docs.length > 0) {
-            setRoutes(loc.docs);
-          }
-          else {
-            setRoutes(null)
-          }
-        });
-    }
-    else if (locationChecked === false) {
-      setLocations(null)
-    }
-    else if (routeChecked === false) {
-      setRoutes(null)
-    }
-  }, [date, locationChecked, routeChecked]);
+    var api = AppAPI.getAPI();
+    api
+      .getLocationsByDateAndSessionId(
+        date,
+        sessionStorage.getItem("sessionId")
+      )
+      .then((loc) => {
+        console.log(loc)
+        if (loc.docs.length > 0) {
+          setLocations(loc.docs);
+        }
+      });
+    api
+      .getRoutesByDateAndSessionId(
+        date,
+        sessionStorage.getItem("sessionId")
+      )
+      .then((loc) => {
+        console.log(loc)
+        if (loc.docs.length > 0) {
+          setRoutes(loc.docs);
+        }
+      });
+  }, [date]);
 
   useEffect(() => {
     console.log(locations);
@@ -68,7 +51,12 @@ function MapPageComponent() {
         placeChecked={locationChecked}
         rangeChecked={routeChecked}
       ></LeftMenuComponent>
-      <MapComponent locations={locations}></MapComponent>
+      <MapComponent 
+        locations={locations} 
+        routes={routes}
+        locationChecked={locationChecked}
+        placeChecked={routeChecked}>
+      </MapComponent>
     </div>
   );
 }

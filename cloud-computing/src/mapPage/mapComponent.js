@@ -5,11 +5,20 @@ import RoutingMachine from "./routingMachineComponent";
 
 function MapComponent(props) {
 
-  //highlight days that have data in calender?????
+  //highlight days that have data in calender?????, grey out locations and routes if no data for either is available
+
+  const dataAvailable = () => {
+    if(props.locations.length > 0 || props.routes.length > 0){
+      return true
+    }
+    else {
+      return false
+    }
+  }
 
   return (
     <div>
-      {props.locations ? (
+      {dataAvailable() ? (
         <MapContainer
           center={[
             props.locations[0].locationJson.latitudeE7 * 0.0000001,
@@ -26,7 +35,8 @@ function MapComponent(props) {
             
           })} */}
           <RoutingMachine></RoutingMachine>
-          {props.locations.map((loc) => {
+          {props.locationChecked &&
+          props.locations.map((loc) => {
             return (
               <Marker
                 key={loc.locationJson.latitudeE7}
