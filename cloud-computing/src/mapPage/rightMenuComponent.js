@@ -2,22 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Navbar, Offcanvas, Nav } from "react-bootstrap";
 
 function RightMenuComponent(props) {
-  const [transportations, setTransportations] = useState({
-    Walking: 4556,
-    Tram: 4242424,
-  });
-
-  const listItemsTransportation = Object.entries(transportations).map(
-    ([key, value]) => (
-      <li key={key}>
-        {key}: {value}m
-      </li>
-    )
-  );
-
-  useEffect(() => {
-    console.log(Object.entries(transportations).forEach((m) => console.log(m)));
-  });
 
   return (
     <>
@@ -44,19 +28,23 @@ function RightMenuComponent(props) {
                 <Offcanvas.Title className="font-weight-bold">
                   Most visited locations:
                 </Offcanvas.Title>
-                {props.locations ? (
+                {props.locations && (
                   <ul className="mt-2">
                     {props.locations.map((loc, index) => (
                       <li key={index}>{loc.locationJson.name}</li>
                     ))}
                   </ul>
-                ) : (
-                  <div></div>
                 )}
                 <Offcanvas.Title className="font-weight-bold mt-3">
                   Means of transportation:
                 </Offcanvas.Title>
-                <ul className="mt-2">{listItemsTransportation}</ul>
+                {/* {props.routes && (
+                  <ul className="mt-2">
+                    {props.routes.map((route, index) => {
+                      <li key={index}>{loc.locationJson.name}</li>
+                    })}
+                  </ul>
+                )} */}
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

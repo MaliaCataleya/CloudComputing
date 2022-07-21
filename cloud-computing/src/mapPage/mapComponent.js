@@ -6,13 +6,11 @@ import RoutingMachine from "./routingMachineComponent";
 function MapComponent(props) {
 
   //highlight days that have data in calender??, grey out locations and routes if no data for either is available
-  //route start and end time in popup
-  //random color for routes
   //center location wrong??
 
+  const [center, setCenter] = useState([])
 
   const dataAvailable = () => {
-    console.log(props.center)
     if (props.locations.length > 0 || props.routes.length > 0) {
       return true
     }
@@ -21,11 +19,23 @@ function MapComponent(props) {
     }
   }
 
+  useEffect(() => {
+    if (props.locations.length > 0) {
+      setCenter([props.locations[0].locationJson.latitudeE7 * 0.0000001, props.locations[0].locationJson.longitudeE7 * 0.0000001])
+    }
+    else if (props.routes.length > 0) {
+      setCenter([props.routes[0].routeJson.startLocation.latitudeE7 * 0.0000001, props.routes[0].routeJson.startLocation.longitudeE7 * 0.0000001])
+    }
+    else {
+      setCenter([48.7758459, 9.1829321])
+    }
+  }, []);
+
   return (
     <div>
       {dataAvailable() ? (
         <MapContainer
-          center={props.center}
+          center={center}
           zoom={13}
           scrollWheelZoom={true}
         >
@@ -39,7 +49,9 @@ function MapComponent(props) {
                 <RoutingMachine
                   key={route.routeJson.startLocation.latitudeE7}
                   startLocation={route.routeJson.startLocation}
-                  endLocation={route.routeJson.endLocation}>
+                  endLocation={route.routeJson.endLocation}
+                  startMarkerText={route.routeJson.duration.startTimestamp.substr(11, 5)}
+                  endMarkerText={route.routeJson.duration.endTimestamp.substr(11, 5)}>
                 </RoutingMachine>)
             })}
           {props.locationChecked &&
