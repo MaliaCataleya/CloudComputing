@@ -10,6 +10,7 @@ function MapPageComponent() {
   const [routeChecked, setRouteChecked] = useState(false);
   const [routes, setRoutes] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [center, setCenter] = useState([])
 
   useEffect(() => {
     var api = AppAPI.getAPI();
@@ -30,7 +31,6 @@ function MapPageComponent() {
         sessionStorage.getItem("sessionId")
       )
       .then((loc) => {
-        console.log(loc)
         if (loc.docs.length > 0) {
           setRoutes(loc.docs);
         }
@@ -38,8 +38,16 @@ function MapPageComponent() {
   }, [date]);
 
   useEffect(() => {
-    console.log(locations);
-  }, [locations]);
+    if(locations.length > 0){
+      setCenter([locations[0].locationJson.latitudeE7 * 0.0000001, locations[0].locationJson.longitudeE7 * 0.0000001])
+    }
+    else if(routes.length > 0){
+      setCenter([routes[0].routeJson.startLocation.latitudeE7 * 0.0000001, routes[0].routeJson.startLocation.longitudeE7 * 0.0000001])
+    }
+    else {
+      setCenter([48.7758459, 9.1829321])
+    }
+  }, [routes, locations]);
 
   return (
     <div className="App">
@@ -55,7 +63,8 @@ function MapPageComponent() {
         locations={locations} 
         routes={routes}
         locationChecked={locationChecked}
-        placeChecked={routeChecked}>
+        routeChecked={routeChecked}
+        center={center}>
       </MapComponent>
     </div>
   );
