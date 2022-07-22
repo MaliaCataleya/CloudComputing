@@ -4,13 +4,26 @@ export default class AppAPI {
 
   #AppServerBaseURL = "/app";
 
-  #getRoutesByDateAndSessionId = (date, sessionId) => "https://4b16383a.eu-gb.apigw.appdomain.cloud/cloud-computing/route?"  + new URLSearchParams({
+  API_KEY = process.env.REACT_APP_API_KEY
+  HEADERS = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'X-IBM-Client-Id': this.API_KEY
+  }
+
+
+  URL = "https://df5ff463.eu-de.apigw.appdomain.cloud/google-location-data"
+  LOCATION_PATH = "/location"
+  ROUTE_PATH = "/route"
+
+  #postGoogleJson = () => this.URL + "/upload-google-data"
+  #getRoutesByDateAndSessionId = (date, sessionId) => this.URL + this.ROUTE_PATH + "?"  + new URLSearchParams({
     date: date,
     sessionId: sessionId
   });
-  #postLocationBySessionId = () => "https://4b16383a.eu-gb.apigw.appdomain.cloud/cloud-computing/locations"
-  #postRouteBySessionId = () => "https://4b16383a.eu-gb.apigw.appdomain.cloud/cloud-computing/route"
-  #getLocationsByDateAndSessionId = (date, sessionId) => "https://4b16383a.eu-gb.apigw.appdomain.cloud/cloud-computing/locations?"  + new URLSearchParams({
+  #postLocationBySessionId = () => this.URL + this.LOCATION_PATH
+  #postRouteBySessionId = () => this.URL + this.ROUTE_PATH
+  #getLocationsByDateAndSessionId = (date, sessionId) => this.URL + this.LOCATION_PATH + "?"  + new URLSearchParams({
     date: date,
     sessionId: sessionId,
 })
@@ -43,10 +56,7 @@ export default class AppAPI {
 
     getRoutesByDateAndSessionId(date, sessionId){
       return this.#fetchAdvanced(this.#getRoutesByDateAndSessionId(date.date, sessionId), {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
+        headers: this.HEADERS,
         method: "GET"
       }).then((responseJSON) => {
         return new Promise(function (resolve) {
@@ -57,10 +67,7 @@ export default class AppAPI {
 
   getLocationsByDateAndSessionId(date, sessionId){
     return this.#fetchAdvanced(this.#getLocationsByDateAndSessionId(date.date, sessionId), {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      headers: this.HEADERS,
       method: "GET"
     }).then((responseJSON) => {
       return new Promise(function (resolve) {
@@ -69,13 +76,21 @@ export default class AppAPI {
     });
   }
 
+  postGoogleJson(googleJson, sessionId){
+    return this.#fetchAdvanced(this.#postGoogleJson(googleJson, sessionId), {
+      headers: this.HEADERS,
+      method: "PUT",
+      body: googleJson,
+    }).then((responseJSON) => {
+      return new Promise(function (resolve) {
+        resolve(responseJSON);
+      });
+    });
+  }
 
   postLocationBySessionId(locationJson, sessionId){
     return this.#fetchAdvanced(this.#postLocationBySessionId(locationJson, sessionId), {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      headers: this.HEADERS,
       method: "PUT",
       body: JSON.stringify({
             sessionId: sessionId,
@@ -90,10 +105,7 @@ export default class AppAPI {
 
   postRouteBySessionId(routeJson, sessionId){
     return this.#fetchAdvanced(this.#postRouteBySessionId(routeJson, sessionId), {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      headers: this.HEADERS,
       method: "PUT",
       body: JSON.stringify({
             sessionId: sessionId,

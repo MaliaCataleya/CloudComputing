@@ -27,6 +27,8 @@ function UploadButton(props) {
     if (inputRef.current?.files) {
       let file = await inputRef.current?.files[0].text()
       let fileJSON = JSON.parse(file)
+      let api = new AppAPI();
+      //api.postGoogleJson(fileJSON, sessionStorage.getItem("sessionId"))
       let locations = []
       let routes = []
       for(let element of fileJSON.timelineObjects){
@@ -42,7 +44,6 @@ function UploadButton(props) {
         }
         
       }
-      let api = new AppAPI();
       for (let location of locations){
         api.postLocationBySessionId(location, sessionStorage.getItem("sessionId"))
       }
