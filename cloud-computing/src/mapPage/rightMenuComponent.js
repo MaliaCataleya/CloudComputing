@@ -3,6 +3,24 @@ import { Navbar, Offcanvas, Nav } from "react-bootstrap";
 
 function RightMenuComponent(props) {
 
+  const [transportation, setTransportation] = useState({});
+
+  const calculateDistance = () => {
+    let transportationJSON = {}
+    for (let route of props.routes){
+      if(transportationJSON.hasOwnProperty(route.activityType)){
+        transportationJSON[route.activityType] += route.distance
+      }
+      else {
+        transportationJSON[route.activityType] = route.distance
+      }
+    }
+  }
+
+  useEffect(() => {
+    calculateDistance()
+  }, [props.routes])
+
   return (
     <>
       <div className="bg-transparent">
@@ -38,13 +56,7 @@ function RightMenuComponent(props) {
                 <Offcanvas.Title className="font-weight-bold mt-3">
                   Means of transportation:
                 </Offcanvas.Title>
-                {/* {props.routes && (
-                  <ul className="mt-2">
-                    {props.routes.map((route, index) => {
-                      <li key={index}>{loc.locationJson.name}</li>
-                    })}
-                  </ul>
-                )} */}
+
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
