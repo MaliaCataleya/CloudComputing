@@ -3,6 +3,44 @@ import { Navbar, Offcanvas, Nav } from "react-bootstrap";
 
 function RightMenuComponent(props) {
 
+  const [transportations, setTransportation] = useState({});
+
+  const listItemsTransportation = Object.entries(transportations).map(
+    ([key, value]) => (
+      <li key={key}>
+        {key}: {value}m
+      </li>
+    )
+  );
+  
+  useEffect(() => {
+    const capitalizeFirstLetter = (string) => {
+      return string.charAt(0).toUpperCase() + string.slice(1)
+    }
+  
+    const renameKeys = (obj) => {
+      var modifiedJson = {}
+      for (let key in obj){
+        let newKey = key.replaceAll("_", " ").toLowerCase()
+        newKey = capitalizeFirstLetter(newKey)
+        modifiedJson[newKey] = obj[key];
+      }
+      return modifiedJson
+    }
+
+    let transportationJSON = {}
+    for (let route of props.routes){
+      if(transportationJSON.hasOwnProperty(route.routeJson.activityType)){
+        transportationJSON[route.routeJson.activityType] += route.routeJson.distance
+      }
+      else {
+        transportationJSON[route.routeJson.activityType] = route.routeJson.distance
+      }
+    }
+    transportationJSON = renameKeys(transportationJSON)
+    setTransportation(transportationJSON)
+  }, [props.routes])
+
   return (
     <>
       <div className="bg-transparent">
@@ -38,13 +76,7 @@ function RightMenuComponent(props) {
                 <Offcanvas.Title className="font-weight-bold mt-3">
                   Means of transportation:
                 </Offcanvas.Title>
-                {/* {props.routes && (
-                  <ul className="mt-2">
-                    {props.routes.map((route, index) => {
-                      <li key={index}>{loc.locationJson.name}</li>
-                    })}
-                  </ul>
-                )} */}
+                <ul className="mt-2">{listItemsTransportation}</ul>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
