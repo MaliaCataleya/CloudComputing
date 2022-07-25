@@ -15,8 +15,9 @@ export default class AppAPI {
   URL = "https://df5ff463.eu-de.apigw.appdomain.cloud/google-location-data"
   LOCATION_PATH = "/location"
   ROUTE_PATH = "/route"
+  GOOGLEDATA_PATH = "/googledata"
 
-  #postGoogleJson = () => this.URL + "/upload-google-data"
+  #postGoogleJson = () => this.URL + this.GOOGLEDATA_PATH
   #getRoutesByDateAndSessionId = (date, sessionId) => this.URL + this.ROUTE_PATH + "?"  + new URLSearchParams({
     date: date,
     sessionId: sessionId
@@ -77,10 +78,14 @@ export default class AppAPI {
   }
 
   postGoogleJson(googleJson, sessionId){
+    let bodyData = JSON.stringify({
+      sessionId: sessionId,
+      timelineObjects: googleJson.timelineObjects,
+    })
     return this.#fetchAdvanced(this.#postGoogleJson(googleJson, sessionId), {
       headers: this.HEADERS,
       method: "PUT",
-      body: googleJson,
+      body: bodyData,
     }).then((responseJSON) => {
       return new Promise(function (resolve) {
         resolve(responseJSON);
