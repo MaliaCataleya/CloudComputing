@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     Navbar,
-    NavDropdown,
     Form,
-    Button,
     Nav,
-    FormControl,
     Offcanvas,
 } from "react-bootstrap";
 import BootstrapDatePickerComponent from "./BootstrapDatePickerComponent";
@@ -13,7 +10,6 @@ import BootstrapDatePickerComponent from "./BootstrapDatePickerComponent";
 //highlight days that have data?????
 
 function LeftMenuComponent(props) {
-    const [date, setDate] = useState("");
 
     return (
         <>
@@ -38,13 +34,6 @@ function LeftMenuComponent(props) {
                                     ></BootstrapDatePickerComponent>
                                 </Nav>
                                 <div className="py-3">
-                                    {/* <div className="form-check">
-                                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                                        <label className="form-check-label" htmlFor="flexRadioDefault1">Auflistung besuchter Orte</label></div>
-                                    <div className="form-check">
-                                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"></input>
-                                        <label className="form-check-label" htmlFor="flexRadioDefault2">Summation bewegter Kilometer</label>
-                                    </div> */}
                                     <Form.Check
                                         checked={props.placeChecked}
                                         type="checkbox"
@@ -60,9 +49,6 @@ function LeftMenuComponent(props) {
                                         onChange={() => props.setRangeChecked(!props.rangeChecked)}
                                     />
                                 </div>
-                                {/* <div className="position-absolute bottom-0 end-0">
-                                    <button type="button" className="btn btn-primary">Speichern</button>
-                                </div> */}
                             </div>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>

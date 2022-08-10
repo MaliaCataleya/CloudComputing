@@ -8,7 +8,7 @@ function MapComponent(props) {
   //highlight days that have data in calender??, grey out locations and routes if no data for either is available
   //center location wrong??
 
-  const [center, setCenter] = useState([])
+  const [center, setCenter] = useState([48.7758459, 9.1829321])
 
   const dataAvailable = () => {
     if (props.locations.length > 0 || props.routes.length > 0) {
@@ -29,7 +29,7 @@ function MapComponent(props) {
     else {
       setCenter([48.7758459, 9.1829321])
     }
-  }, []);
+  }, [props]);
 
   return (
     <div>

@@ -24,6 +24,12 @@ it("does not render view data button when no data uploaded", () => {
     expect(viewDataButton).toBeNull()
 });
 
+it("does render upload button when no data uploaded", () => {
+  render(<HomeComponent></HomeComponent>, container)
+  const uploadButton = screen.queryAllByTestId('uploadButton')
+  expect(uploadButton).toBeTruthy()
+});
+
 
 
 
