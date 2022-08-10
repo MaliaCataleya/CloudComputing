@@ -2,15 +2,12 @@ export default class AppAPI {
   // Singelton instance
   static #api = null;
 
-  #AppServerBaseURL = "/app";
-
   API_KEY = process.env.REACT_APP_API_KEY
   HEADERS = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'X-IBM-Client-Id': this.API_KEY
   }
-
 
   URL = "https://df5ff463.eu-de.apigw.appdomain.cloud/google-location-data"
   LOCATION_PATH = "/location"
