@@ -45,7 +45,7 @@ it('PUT should return a status of 200 if data and an api key is provided', funct
     .expect('status', 200);
 });
 
-describe('GET endpoints with valid data', () => {
+describe('GET endpoints when data is available', () => {
   const sessionId = uuidv4()
   const date = "2020-05-31"
   beforeAll(() => {
@@ -87,6 +87,49 @@ describe('GET endpoints with valid data', () => {
         '_rev': Joi.string().required(),
         'routeJson': Joi.object().required()
       }); 
+  });
+}
+)
+
+describe('GET endpoints when data is unavailable', () => {
+  const sessionId = uuidv4()
+  const unavailableSessionId = "unavailableSessionId"
+  const unavailableDate = "2020-06-31"
+  beforeAll(() => {
+    return frisby
+      .setup({
+          request: {
+            headers: HEADERS
+          }
+        })
+      .put(postGoogleJson(), googleJSON(sessionId))
+      .expect('status', 200);
+  });
+  it('GET locations should return a status of 200 and an empty array', function () {
+    return frisby
+      .setup({
+          request: {
+            headers: HEADERS
+          }
+        })
+      .get(getLocationsByDateAndSessionId(unavailableDate, unavailableSessionId))
+      .expect('status', 200)
+      .expect('jsonTypes', {
+        docs: Joi.array().max(0)
+    })
+  });
+  it('GET routes should return a status of 200 and an empty array', function () {
+    return frisby
+      .setup({
+          request: {
+            headers: HEADERS
+          }
+        })
+      .get(getRoutesByDateAndSessionId(unavailableDate, unavailableSessionId))
+      .expect('status', 200)
+      .expect('jsonTypes', {
+        docs: Joi.array().max(0)
+    })
   });
 }
 )
