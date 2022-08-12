@@ -26,7 +26,8 @@ const HEADERS = {
   'X-IBM-Client-Id': API_KEY
 }
 
-it('PUT should return a status of 401 if no api key is provided in the header', function () {
+describe('PUT endpoints', () => {
+  it('PUT should return a status of 401 if no api key is provided in the header', function () {
     return frisby
       .put(postGoogleJson(), googleJSON(uuidv4()))
       .expect('status', 401);
@@ -42,6 +43,8 @@ it('PUT should return a status of 200 if data and an api key is provided', funct
     .put(postGoogleJson(), googleJSON(uuidv4()))
     .expect('status', 200);
 });
+})
+
 
 describe('GET endpoints when data is available', () => {
   const sessionId = uuidv4()
