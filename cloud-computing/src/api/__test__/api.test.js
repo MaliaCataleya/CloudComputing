@@ -14,8 +14,6 @@ const getRoutesByDateAndSessionId = (date, sessionId) => URL + ROUTE_PATH + "?" 
     date: date,
     sessionId: sessionId
   });
-const postLocationBySessionId = () => URL + LOCATION_PATH
-const postRouteBySessionId = () => URL + ROUTE_PATH
 const getLocationsByDateAndSessionId = (date, sessionId) => URL + LOCATION_PATH + "?"  + new URLSearchParams({
     date: date,
     sessionId: sessionId,
