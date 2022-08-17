@@ -45,7 +45,7 @@ function MapComponent(props) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {props.routeChecked &&
+          {(props.routeChecked && (props.routes !== undefined)) &&
             props.routes.map((route) => {
               return (
                 <RoutingMachine
@@ -56,7 +56,7 @@ function MapComponent(props) {
                   endMarkerText={route.routeJson.duration.endTimestamp.substr(11, 5)}>
                 </RoutingMachine>)
             })}
-          {props.locationChecked &&
+          {props.locationChecked && (props.locations !== undefined) &&
             props.locations.map((loc) => {
               return (
                 <Marker
