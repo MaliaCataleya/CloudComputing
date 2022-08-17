@@ -19,7 +19,9 @@ function MapPageComponent() {
         sessionStorage.getItem("sessionId")
       )
       .then((loc) => {
-        setLocations(loc.docs);
+        if(loc.docs !== undefined){
+          setLocations(loc.docs);
+        }
       });
     api
       .getRoutesByDateAndSessionId(
@@ -27,7 +29,9 @@ function MapPageComponent() {
         sessionStorage.getItem("sessionId")
       )
       .then((loc) => {
-        setRoutes(loc.docs);
+        if(loc.docs !== undefined){
+          setRoutes(loc.docs);
+        }
       });
   }, [date]);
 

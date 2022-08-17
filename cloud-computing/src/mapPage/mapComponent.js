@@ -11,13 +11,11 @@ function MapComponent(props) {
   const [center, setCenter] = useState([48.7758459, 9.1829321])
 
   const dataAvailable = () => {
-    if(props.locations !== undefined){
-      if (props.locations.length > 0 || props.routes.length > 0) {
-        return true
-      }
-      else {
-        return false
-      }
+    if (props.locations.length > 0 || props.routes.length > 0) {
+      return true
+    }
+    else {
+      return false
     }
   }
 
@@ -45,7 +43,7 @@ function MapComponent(props) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {(props.routeChecked && (props.routes !== undefined)) &&
+          {props.routeChecked &&
             props.routes.map((route) => {
               return (
                 <RoutingMachine
@@ -56,7 +54,7 @@ function MapComponent(props) {
                   endMarkerText={route.routeJson.duration.endTimestamp.substr(11, 5)}>
                 </RoutingMachine>)
             })}
-          {props.locationChecked && (props.locations !== undefined) &&
+          {props.locationChecked &&
             props.locations.map((loc) => {
               return (
                 <Marker
