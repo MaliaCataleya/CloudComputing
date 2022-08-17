@@ -11,11 +11,13 @@ function MapComponent(props) {
   const [center, setCenter] = useState([48.7758459, 9.1829321])
 
   const dataAvailable = () => {
-    if (props.locations.length > 0 || props.routes.length > 0) {
-      return true
-    }
-    else {
-      return false
+    if(props.locations !== undefined){
+      if (props.locations.length > 0 || props.routes.length > 0) {
+        return true
+      }
+      else {
+        return false
+      }
     }
   }
 
