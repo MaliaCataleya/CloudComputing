@@ -5,5 +5,5 @@ Zunächst lädt der Benutzer dazu seine lokal gespeicherten Standortdaten aus se
 
 Das Projekt wurde mithilfe von verschiedenen Cloud Technologien von IBM wie Cloudant und Functions umgesetzt. Im Frontend wurde React und Bootstrap, mit verschiedenen libraries wie react-leaflet oder leaflet-routing-machine verwendet.
 
-Weitere Informationen sind unter ... zu finden.
+Weitere Informationen sind unter ... im MI Blog zu finden.
 Die Website kann über https://miclit131.github.io/ aufgerufen werden.
